@@ -1,25 +1,9 @@
 defmodule InvestorTest do
   use ExUnit.Case
+  alias App.Investor, as: Investor
   doctest Investor
 
-  test "suggests what to buy" do
-    budget = %{max: 50.0, min: 40.0}
-    portfolio = [
-      %{:ticker => "HOG", :price => 10.2, :holdings => 2, :target_ratio => 0.3},
-      %{:ticker => "FUG", :price => 15.1, :holdings => 1, :target_ratio => 0.7}
-    ]
-
-    expected = [
-      %{:ticker => "HOG", :amount => 0},
-      %{:ticker => "FUG", :amount => 3},
-    ]
-
-    actual = Investor.suggest_what_to_buy(budget, portfolio)
-    IO.inspect(actual)
-    # assert actual == expected
-  end
-
-  describe "Investor.map_to_every_purchaseable_amount_within_budget/2" do
+  describe "App.Investor.map_to_every_purchaseable_amount_within_budget/2" do
     test "calculates every possible amount under budget and map to a list of item with the amount" do
       item = %{price: 12.0}
       budget = 40

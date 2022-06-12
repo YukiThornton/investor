@@ -1,4 +1,4 @@
-defmodule Portfolio do
+defmodule App.Portfolio do
 
   def append_ratio(items)  do
     sum = items |> Stream.map(&calc_total_value/1) |> Enum.sum()

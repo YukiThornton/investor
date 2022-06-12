@@ -1,4 +1,4 @@
-defmodule Combination do
+defmodule App.Combination do
 
   defp create_combinations(result, [first | []]) do
     for r <- result, f <- first, do: r ++ [f]

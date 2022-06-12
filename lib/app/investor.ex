@@ -1,4 +1,7 @@
-defmodule Investor do
+defmodule App.Investor do
+  alias App.Combination, as: Combination
+  alias App.Portfolio, as: Portfolio
+  alias App.PurchasePlan, as: PurchasePlan
 
   def map_to_every_purchaseable_amount_within_budget(%{price: price} = item, budget) do
     max_amount = floor(budget / price)

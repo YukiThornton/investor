@@ -1,4 +1,4 @@
-defmodule PurchasePlan do
+defmodule App.PurchasePlan do
 
   def convert_into_plan(items) do
     %{

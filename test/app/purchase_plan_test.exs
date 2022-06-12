@@ -1,8 +1,9 @@
 defmodule PurchasePlanTest do
   use ExUnit.Case
+  alias App.PurchasePlan, as: PurchasePlan
   doctest PurchasePlan
 
-  describe "PurchasePlan.convert_into_plan" do
+  describe "App.PurchasePlan.convert_into_plan" do
     test "creates plan with total cost and absolute ratio diff" do
       input = [
         %{ticker: "HOG", cost: 50.0, ratio: 0.2, target_ratio: 0.5},
@@ -21,7 +22,7 @@ defmodule PurchasePlanTest do
     end
   end
 
-  describe "PurchasePlan.is_within_budget?/2" do
+  describe "App.PurchasePlan.is_within_budget?/2" do
 
     test "returns true if total_cost is same or within max budget AND same or over min budget" do
       item = %{total_cost: 30.2}

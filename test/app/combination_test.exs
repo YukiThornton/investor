@@ -1,8 +1,9 @@
-defmodule CombinationTest do
+defmodule App.CombinationTest do
   use ExUnit.Case
-  doctest Combination
+  alias App.Combination, as: Combination
+  doctest App.Combination
 
-  describe "Combination.create_combinations/1" do
+  describe "App.Combination.create_combinations/1" do
     test "creats combination by taking 1 element from each array" do
       input = [
         [:a1, :a2],

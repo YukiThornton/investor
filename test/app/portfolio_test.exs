@@ -1,8 +1,9 @@
 defmodule PortfolioTest do
   use ExUnit.Case
+  alias App.Portfolio, as: Portfolio
   doctest Portfolio
 
-  describe "Portfolio.append_ratio/1" do
+  describe "App.Portfolio.append_ratio/1" do
     test "calculates current ratio with price and holdings for each element" do
       input = [
         %{:price => 5.0, :holdings => 7},
@@ -52,7 +53,7 @@ defmodule PortfolioTest do
     end
   end
 
-  describe "Portfolio.append_cost/1" do
+  describe "App.Portfolio.append_cost/1" do
     test "calculates cost with price and amount" do
       input = [
         %{price: 20.0, amount: 3},
