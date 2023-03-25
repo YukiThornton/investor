@@ -11,7 +11,7 @@ defmodule Api.Router do
   plug(:dispatch)
 
   get "/ping" do
-    send_resp(conn, 200, "hello")
+    send_resp(conn, 200, "hello\n")
   end
 
   post "/plans" do

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: investor
+spec:
+  selector:
+    matchLabels:
+      app: investor
+  template:
+    metadata:
+      labels:
+        app: investor
+    spec:
+      containers:
+      - name: investor
+        image: investor
+        imagePullPolicy: Never
+        readinessProbe:
+          exec:
+            command:
+              - curl
+              - localhost:7890/ping
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 7890

@@ -1,0 +1,20 @@
+apiVersion: skaffold/v4beta3
+kind: Config
+build:
+  artifacts:
+    - image: investor
+      context: .
+      docker:
+        dockerfile: Dockerfile
+  local:
+    push: false
+    useBuildkit: true
+deploy:
+  kubectl:
+    defaultNamespace: tools
+portForward:
+  - resourceType: Service
+    resourceName: investor
+    namespace: tools
+    port: 7890
+    localPort: 7890
