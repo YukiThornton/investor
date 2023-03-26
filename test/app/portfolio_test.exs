@@ -82,4 +82,28 @@ defmodule PortfolioTest do
       assert Portfolio.append_cost(input) == expected
     end
   end
+
+  describe "App.Portfolio.add_amount/3" do
+    test "calculates" do
+
+      input = [
+        %{:price => 5.0, :holdings => 5, :ratio => 0.7, :amount => 2, :cost=> 10.0},
+        %{:price => 15.0, :holdings => 1, :ratio => 0.3, :amount => 0, :cost => 0}
+      ]
+
+      expected = [
+        %{:price => 5.0, :holdings => 5, :ratio => 0.75, :amount => 4, :cost=> 20.0},
+        %{:price => 15.0, :holdings => 1, :ratio => 0.25, :amount => 0, :cost => 0}
+      ]
+
+      assert Portfolio.add_amount(input, 0, 2) == expected
+    end
+  end
+
+  describe "App.Portfolio.calc_target_ratio_diff/1" do
+    test "it returns current ratio - target ratio" do
+      assert Float.round(Portfolio.calc_target_ratio_diff( %{:ratio => 0.6, :target_ratio => 0.5}), 5) == 0.1
+      assert Float.round(Portfolio.calc_target_ratio_diff( %{:ratio => 0.3, :target_ratio => 0.5}), 5) == -0.2
+    end
+  end
 end

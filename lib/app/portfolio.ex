@@ -21,4 +21,23 @@ defmodule App.Portfolio do
     price * amount
   end
 
+  defp map_at(enumerable, index, f) do
+    enumerable |> Enum.with_index(fn element, i -> if i == index, do: f.(element), else: element end)
+  end
+
+  def add_amount(portfolio_item, amount) do
+    {_, result} = Map.get_and_update!(portfolio_item, :amount, fn current -> {current, current + amount} end)
+    result
+  end
+
+  def add_amount(portfolio, index, amount) do
+    portfolio
+    |> map_at(index, &(add_amount(&1, amount)))
+    |> append_ratio
+    |> append_cost
+  end
+
+  def calc_target_ratio_diff(%{ratio: ratio, target_ratio: target_ratio}) do
+    ratio - target_ratio
+  end
 end
