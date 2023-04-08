@@ -18,9 +18,9 @@ defmodule Api.Router do
     %{budget: budget, portfolio: portfolio} = conn.body_params
     IO.inspect(budget)
     IO.inspect(portfolio)
-    result = App.Investor.suggest_what_to_buy(portfolio, budget)
+    result = App.Investor.make_plans(portfolio, budget)
     IO.inspect(result)
-    send_resp(conn, 200, Jason.encode!(%{"plans" => result}))
+    send_resp(conn, 200, Jason.encode!(result))
   end
 
   match _ do

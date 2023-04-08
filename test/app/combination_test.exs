@@ -22,4 +22,18 @@ defmodule App.CombinationTest do
     end
   end
 
+  describe "create_permutations" do
+    test "creates permutations of range from 0 to max" do
+      expected = [
+        [0, 0], [0, 1], [0, 2], [0, 3],
+        [1, 0], [1, 1], [1, 2], [1, 3],
+        [2, 0], [2, 1], [2, 2], [2, 3],
+        [3, 0], [3, 1], [3, 2], [3, 3],
+      ]
+
+      actual = Combination.create_permutations(3, 2)
+
+      assert MapSet.new(actual) == MapSet.new(expected)
+    end
+  end
 end

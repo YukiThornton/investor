@@ -1,5 +1,24 @@
 defmodule App.Portfolio do
 
+  def normalize(items) do
+    items
+    |> append_amount
+    |> append_ratio
+    |> append_cost
+  end
+
+  def append_amount(items) do
+    Enum.map(items, &append_amount_to_item(&1))
+  end
+
+  def append_amount_to_item(%{amount: _} = item) do
+    item
+  end
+
+  def append_amount_to_item(item) do
+    Map.put(item, :amount, 0)
+  end
+
   def append_ratio(items)  do
     sum = items |> Stream.map(&calc_total_value/1) |> Enum.sum()
     items |> Enum.map(&(Map.put(&1, :ratio, calc_total_value(&1) / sum)))
@@ -33,6 +52,14 @@ defmodule App.Portfolio do
   def add_amount(portfolio, index, amount) do
     portfolio
     |> map_at(index, &(add_amount(&1, amount)))
+    |> append_ratio
+    |> append_cost
+  end
+
+  def add_amounts(portfolio, amounts) do
+    portfolio
+    |> Enum.with_index()
+    |> Enum.map(fn {item, i} -> add_amount(item, Enum.at(amounts, i)) end)
     |> append_ratio
     |> append_cost
   end
